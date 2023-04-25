@@ -5,7 +5,7 @@ services:
     build: 
       context: ./docker
     volumes: #sync
-      - "./:/var/www/html" # sync project dir with container web dir
+      - "./www/:/var/www/html/" # sync project dir with container web dir
     ports:
       - 80:80
       - 443:443 # for future ssl traffic
@@ -17,8 +17,7 @@ services:
       - MYSQL_PASSWORD=password
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
     volumes:
-      - "./db:/docker-entrypoint-initdb.d" # sync persistens sql files with container
-      # - ./db/:/var/lib/mysql/
+      - ./db/:/var/lib/mysql/
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
